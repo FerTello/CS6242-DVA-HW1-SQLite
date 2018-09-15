@@ -13,7 +13,8 @@ DROP TABLE IF EXISTS movie_overview;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
+CREATE TABLE movies(id int, name text, score int);
+CREATE TABLE cast(movie_id int, cast_id int, cast_name text);
 
 
 -- [insert your SQL statement(s) ABOVE this line]
@@ -28,7 +29,8 @@ DROP TABLE IF EXISTS movie_overview;
 
 -- [insert your SQLite command(s) BELOW this line]
 
-
+.import movie-name-score.txt movies
+.import movie-cast.txt cast
 
 
 -- [insert your SQLite command(s) ABOVE this line]
@@ -46,7 +48,9 @@ SELECT COUNT(*) FROM cast;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
+CREATE INDEX scores_index ON movies (score);
+CREATE INDEX cast_index ON cast (cast_id);
+CREATE INDEX movie_index ON movies (id);
 
 
 -- [insert your SQL statement(s) ABOVE this line]
@@ -61,7 +65,7 @@ SELECT COUNT(*) FROM cast;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
+SELECT AVG(score) as average_score FROM movies WHERE (score) >= 5;
 
 
 -- [insert your SQL statement(s) ABOVE this line]
