@@ -79,7 +79,7 @@ SELECT AVG(score) as average_score FROM movies WHERE (score) >= 5;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
+SELECT * FROM movies ORDER by score, name LIMIT 5;
 
 
 -- [insert your SQL statement(s) ABOVE this line]
@@ -93,8 +93,11 @@ SELECT AVG(score) as average_score FROM movies WHERE (score) >= 5;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
-
+SELECT cast_id, cast_name, COUNT(cast_name) as movie_count
+  FROM cast
+  GROUP BY cast_name
+  HAVING movie_count = 2
+  LIMIT 10;
 
 -- [insert your SQL statement(s) ABOVE this line]
 
@@ -107,7 +110,12 @@ SELECT AVG(score) as average_score FROM movies WHERE (score) >= 5;
 
 -- [insert your SQL statement(s) BELOW this line]
 
-
+SELECT cast_id, cast_name, (SELECT AVG(score) WHERE score > 39) as average_score
+  FROM movies INNER JOIN cast ON id = movie_id
+  GROUP BY cast_name
+  HAVING COUNT(cast_name) > 2
+  ORDER BY average_score DESC
+  LIMIT 10;
 
 
 -- [insert your SQL statement(s) ABOVE this line]
@@ -121,8 +129,13 @@ SELECT AVG(score) as average_score FROM movies WHERE (score) >= 5;
 
 -- [insert your SQL statement(s) BELOW this line]
 
+--SELECT * from cast WHERE movie_id in (
+--    SELECT movie_id from cast
+--    group by movie_id having count(*) > 3
+--)
+--LIMIT 40;
 
-
+SELECT movie_id, cast_name from cast GROUP BY movie_id having count(*) >20;
 
 -- [insert your SQL statement(s) ABOVE this line]
 
